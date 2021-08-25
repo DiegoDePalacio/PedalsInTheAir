@@ -103,5 +103,7 @@ namespace PedalsInANonDescriptivePlace
             transform.GetChild(0).transform.rotation = Quaternion.Lerp(transform.GetChild(0).transform.rotation, birdRotation, 5 * Time.deltaTime);
             
         }
+        public void QuitGame()
+            => Application.Quit();
     }
 }

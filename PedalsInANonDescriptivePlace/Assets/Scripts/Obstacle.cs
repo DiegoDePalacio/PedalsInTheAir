@@ -16,7 +16,7 @@ namespace PedalsInANonDescriptivePlace
             if (other.gameObject.CompareTag("Seagull"))
             {
                 _collidingSeagull = other.gameObject.GetComponent<Seagull>();
-                _collidingSeagull.OnColliding(_collisionDamage);
+                _collidingSeagull.DecreaseHealth(_collisionDamage);
             }
         }
 
@@ -30,7 +30,7 @@ namespace PedalsInANonDescriptivePlace
 
         private void FixedUpdate()
         {
-            _collidingSeagull?.OnColliding(_frictionDamage);
+            _collidingSeagull?.DecreaseHealth(_frictionDamage);
         }
     }
 }

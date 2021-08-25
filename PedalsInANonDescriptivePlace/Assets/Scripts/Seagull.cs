@@ -14,13 +14,14 @@ namespace PedalsInANonDescriptivePlace
         [SerializeField] private float _maxHealth;
         [SerializeField] private float _health;
         [SerializeField] private float _autoHealthRecoverySpeed = 0.01f;
+        [SerializeField] private float _touchDamage;
 
         public void RefillPoop(float amountToRefill)
         {
             _poopAvailable += amountToRefill;
         }
 
-        public void OnColliding(float damage)
+        public void DecreaseHealth(float damage)
         {
             _health -= damage;
 
@@ -61,6 +62,11 @@ namespace PedalsInANonDescriptivePlace
         {
             // TODO: Replace by pool usage
             Instantiate(isBigPoop ? _bigPoopPrefab : _littlePoopPrefab);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            DecreaseHealth(_touchDamage);
         }
 
         private void PreparePoop()

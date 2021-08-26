@@ -58,7 +58,7 @@ namespace PedalsInANonDescriptivePlace
             {
                 Vector3 spawningPlace = GetRandomSpawningPlace();
             
-                if (spawningPlace != null)
+                if (spawningPlace != Vector3.zero)
                 {
                     // TODO: Use pool
                     Instantiate(_healthRecovererPrefab, spawningPlace, Quaternion.identity);
@@ -76,7 +76,7 @@ namespace PedalsInANonDescriptivePlace
             {
                 Vector3 spawningPlace = GetRandomSpawningPlace();
             
-                if (spawningPlace != null)
+                if (spawningPlace != Vector3.zero)
                 {
                     // TODO: Use pool
                     Instantiate(_foodPrefab, spawningPlace, Quaternion.identity);

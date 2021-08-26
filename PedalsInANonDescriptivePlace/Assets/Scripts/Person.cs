@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -59,6 +60,7 @@ namespace PedalsInANonDescriptivePlace
 
         public void OnBeingPooped(float damage)
         {
+            SoundManager.Instance.PlaySound(SFX.LittlePoopHit);
             _health -= damage;
 
             if (_health <= 0f)
@@ -71,7 +73,7 @@ namespace PedalsInANonDescriptivePlace
 
         private void Die()
         {
-            
+            SoundManager.Instance.PlaySound(SFX.BigPoopHit);
             Destroy(gameObject);
         }
 

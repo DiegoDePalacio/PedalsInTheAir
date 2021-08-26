@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using UnityEngine;
 
 namespace PedalsInANonDescriptivePlace
@@ -11,6 +12,7 @@ namespace PedalsInANonDescriptivePlace
             if (other.gameObject.CompareTag("Seagull"))
             {
                 Seagull seagull = other.gameObject.GetComponent<Seagull>();
+                SoundManager.Instance.PlaySound(SFX.Healing);
                 seagull.IncreaseHealth(_healthAmountToRecover);
             }
             

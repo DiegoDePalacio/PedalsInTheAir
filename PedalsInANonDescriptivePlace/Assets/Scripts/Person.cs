@@ -63,6 +63,7 @@ namespace PedalsInANonDescriptivePlace
 
         public void OnBeingPooped(float damage)
         {
+            SoundManager.Instance.PlaySound(SFX.LittlePoopHit);
             _health -= damage;
             
             int rndClip = Random.Range(0, _sfx.Count);
@@ -79,6 +80,7 @@ namespace PedalsInANonDescriptivePlace
         private void Die()
         {
             _manager.ReduceNumberOfPeople();
+            SoundManager.Instance.PlaySound(SFX.BigPoopHit);
             Destroy(gameObject);
         }
 

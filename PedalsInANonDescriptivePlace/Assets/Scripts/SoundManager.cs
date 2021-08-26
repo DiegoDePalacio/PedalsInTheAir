@@ -14,7 +14,7 @@ namespace DefaultNamespace
         NoAvailablePoop,
         Eating,
         Healing,
-        Pooping,
+        NOT_USED,
         LoadPoop,
         EjectPoop,
         HagenEee,
@@ -45,7 +45,7 @@ namespace DefaultNamespace
     {
         public static SoundManager Instance;
 
-        public List<Sound> _sounds = new List<Sound>();
+        [SerializeField] private List<Sound> _sounds = new List<Sound>();
 
         private AudioSource _audioSource;
 

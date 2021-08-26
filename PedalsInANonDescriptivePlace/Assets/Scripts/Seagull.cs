@@ -1,4 +1,5 @@
 using System;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,6 +36,8 @@ namespace PedalsInANonDescriptivePlace
         {
             if (_poopAvailable == _maxPoopCapacity)
                 return false;
+            
+            SoundManager.Instance.PlaySound(SFX.Eating);
             
             _poopAvailable = Mathf.Min(_maxPoopCapacity, _poopAvailable + amountToRefill);
             _burgersEaten++;
@@ -83,6 +86,7 @@ namespace PedalsInANonDescriptivePlace
                 if (_poopAvailable < _bigPoopSize)
                 {
                     // TODO: Make a sound for empty stomach
+                    SoundManager.Instance.PlaySound(SFX.NoAvailablePoop);
                     return;
                 }
                 else
@@ -111,6 +115,7 @@ namespace PedalsInANonDescriptivePlace
         
             // TODO: Replace by pool usage
             Instantiate(isBigPoop ? _bigPoopPrefab : _littlePoopPrefab, _poopHoleLocation.position, Quaternion.identity);
+            SoundManager.Instance.PlaySound(SFX.EjectPoop);
 
             _isPoopPrepared = false;
         }
@@ -122,12 +127,14 @@ namespace PedalsInANonDescriptivePlace
 
         private void OnCollisionEnter(Collision other)
         {
+            SoundManager.Instance.PlaySound(SFX.Crash);
             DecreaseHealth(_crashDamage);
         }
 
         private void PreparePoop()
         {
             // Show some small brown sphere peeking out of the seagull's ass
+            SoundManager.Instance.PlaySound(SFX.LoadPoop);
             _preparedPoopGameObject.SetActive(true);
             _isPoopPrepared = true;
         }

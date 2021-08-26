@@ -63,6 +63,7 @@ namespace PedalsInANonDescriptivePlace
             _rigidbody = GetComponent<Rigidbody>();
             _velocityHorizontalSpeed = _defaultHorizontalVelocity;
             _rigidbody.velocity = transform.forward * _defaultHorizontalVelocity;
+            
             for (int i = 0; i < _maxFramesPerAverage; i++)
                 _lastInputs.Add(0);
         }
@@ -117,6 +118,7 @@ namespace PedalsInANonDescriptivePlace
         {
             float pedalPower = Input.GetAxis(PEDAL_AXIS);
 
+            // Getting the average force on the pedals from the last few frames
             int averageDivider = Mathf.Min(_currentFrame, _maxFramesPerAverage);
             _lastInputs = _lastInputs.Select(e => {return e + pedalPower;}).ToList();
             float averagePedalPower = _lastInputs[_currentFrame] / averageDivider;
@@ -143,7 +145,6 @@ namespace PedalsInANonDescriptivePlace
                     isSoaring = false;
                 }
                 _animation["ToonSeagullFlap"].speed = pedalPower * _animationSpeed;
-                
             }
             else
             {
@@ -167,9 +168,9 @@ namespace PedalsInANonDescriptivePlace
 #endif
 
             if (SteerLeft)
-                steering += 1f;
-            if (SteerRight)
                 steering -= 1f;
+            if (SteerRight)
+                steering += 1f;
             
             transform.Rotate(_steeringSpeed * steering);
         }

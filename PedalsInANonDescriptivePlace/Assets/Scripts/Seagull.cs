@@ -22,8 +22,10 @@ namespace PedalsInANonDescriptivePlace
         [SerializeField] private Transform _poopHoleLocation;
         [SerializeField] private Image _healthFill;
         [SerializeField] private Image[] _poopMeter;
+        [SerializeField] private Text _burgersEatenText;
 
         private bool _isPoopPrepared = false;
+        private int _burgersEaten;
 
         private void Awake()
         {
@@ -38,6 +40,8 @@ namespace PedalsInANonDescriptivePlace
             SoundManager.Instance.PlaySound(SFX.Eating);
             
             _poopAvailable = Mathf.Min(_maxPoopCapacity, _poopAvailable + amountToRefill);
+            _burgersEaten++;
+            UpdateUI();
             return true;
         }
 
@@ -138,6 +142,8 @@ namespace PedalsInANonDescriptivePlace
         private void UpdateUI()
         {
             _healthFill.fillAmount = _health / _maxHealth;
+
+            _burgersEatenText.text = _burgersEaten.ToString();
 
             for (int i = 0; i < _maxPoopCapacity; i++)
                 _poopMeter[i].enabled = (i <= _poopAvailable - 1);

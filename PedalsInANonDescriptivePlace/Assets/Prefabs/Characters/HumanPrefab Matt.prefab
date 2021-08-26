@@ -9,8 +9,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6286530718968031387, guid: 47037ea22cbf9e54897c2ea7358f844e,
         type: 3}
+      propertyPath: _sfx.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6286530718968031387, guid: 47037ea22cbf9e54897c2ea7358f844e,
+        type: 3}
       propertyPath: _name
       value: Schmatt
+      objectReference: {fileID: 0}
+    - target: {fileID: 6286530718968031387, guid: 47037ea22cbf9e54897c2ea7358f844e,
+        type: 3}
+      propertyPath: _sfx.Array.data[0]
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 6286530718968031387, guid: 47037ea22cbf9e54897c2ea7358f844e,
+        type: 3}
+      propertyPath: _sfx.Array.data[1]
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6713593786982308583, guid: 47037ea22cbf9e54897c2ea7358f844e,
         type: 3}

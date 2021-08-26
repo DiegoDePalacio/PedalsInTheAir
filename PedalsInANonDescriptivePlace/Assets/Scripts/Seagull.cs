@@ -133,7 +133,7 @@ namespace PedalsInANonDescriptivePlace
             _healthFill.fillAmount = _health / _maxHealth;
 
             for (int i = 0; i < _maxPoopCapacity; i++)
-                _poopMeter[i].enabled = (i <= _poopAvailable);
+                _poopMeter[i].enabled = (i <= _poopAvailable - 1);
         }
 
         private void Die()

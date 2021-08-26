@@ -15,6 +15,8 @@ namespace DefaultNamespace
         Eating,
         Healing,
         Pooping,
+        LoadPoop,
+        EjectPoop,
         HagenEee,
         HagenDisgusting,
         HagenYuk,

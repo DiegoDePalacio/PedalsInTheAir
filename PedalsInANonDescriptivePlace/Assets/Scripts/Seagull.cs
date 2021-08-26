@@ -9,18 +9,23 @@ namespace PedalsInANonDescriptivePlace
         private const string BIG_POOP = "showStats";
     
         [SerializeField] private Poop _littlePoopPrefab;
+        [SerializeField] private int _littlePoopSize = 1;
         [SerializeField] private Poop _bigPoopPrefab;
+        [SerializeField] private int _bigPoopSize = 2;
         [SerializeField] private int _maxPoopCapacity;
         [SerializeField] private int _poopAvailable;
         [SerializeField] private float _maxHealth;
         [SerializeField] private float _health;
         [SerializeField] private float _autoHealthRecoverySpeed = 0.01f;
         [SerializeField] private float _touchDamage;
-        [SerializeField] private GameObject _preparedPoop;
+        [SerializeField] private GameObject _preparedPoopGameObject;
+        [SerializeField] private Transform _poopHoleLocation;
+
+        private bool _isPoopPrepared = false;
 
         private void Awake()
         {
-            _preparedPoop.SetActive(false);
+            _preparedPoopGameObject.SetActive(false);
         }
 
         public bool RefillPoop(int amountToRefill)
@@ -54,19 +59,39 @@ namespace PedalsInANonDescriptivePlace
         {
             IncreaseHealth(_autoHealthRecoverySpeed);
 
-            if (PlayerController.ShootDown1 || PlayerController.ShootDown2)
-//            if (Input.GetButtonDown(LITTLE_POOP) || Input.GetButtonDown(BIG_POOP))
+            if (PlayerController.ShootDown1)
             {
-                PreparePoop();
+                if (_poopAvailable < _littlePoopSize)
+                {
+                    // TODO: Make a sound for empty stomach
+                    return;
+                }
+                else
+                {
+                    _poopAvailable -= _littlePoopSize;
+                    PreparePoop();
+                }
+            }
+
+            if (PlayerController.ShootDown2)
+            {
+                if (_poopAvailable < _bigPoopSize)
+                {
+                    // TODO: Make a sound for empty stomach
+                    return;
+                }
+                else
+                {
+                    _poopAvailable -= _bigPoopSize;
+                    PreparePoop();
+                }
             }
 
             if (PlayerController.ShootUp1)
-//            if (Input.GetButtonUp(LITTLE_POOP))
             {
                 SpawnPoop(false);
             }
             else if (PlayerController.ShootUp2)          
-//            else if (Input.GetButtonUp(BIG_POOP))
             {
                 SpawnPoop(true);
             }
@@ -74,10 +99,15 @@ namespace PedalsInANonDescriptivePlace
 
         private void SpawnPoop(bool isBigPoop)
         {
-            _preparedPoop.SetActive(false);
+            if (!_isPoopPrepared)
+                return;
+        
+            _preparedPoopGameObject.SetActive(false);
         
             // TODO: Replace by pool usage
-            Instantiate(isBigPoop ? _bigPoopPrefab : _littlePoopPrefab);
+            Instantiate(isBigPoop ? _bigPoopPrefab : _littlePoopPrefab, _poopHoleLocation.position, Quaternion.identity);
+
+            _isPoopPrepared = false;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -88,7 +118,8 @@ namespace PedalsInANonDescriptivePlace
         private void PreparePoop()
         {
             // Show some small brown sphere peeking out of the seagull's ass
-            _preparedPoop.SetActive(true);
+            _preparedPoopGameObject.SetActive(true);
+            _isPoopPrepared = true;
         }
 
         private void UpdateUI()

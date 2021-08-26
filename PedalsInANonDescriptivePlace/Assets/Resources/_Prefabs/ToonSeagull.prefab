@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1281424608551457372}
   m_Layer: 9
   m_Name: Main Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,6 +82,36 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281424608551457373}
   m_Enabled: 1
+--- !u!1 &2291967811252757040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 520479861279700051}
+  m_Layer: 9
+  m_Name: PoopHole
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &520479861279700051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2291967811252757040}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.088, z: 0.0477}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3115860894582868359}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3007767212705439432
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,6 +986,7 @@ Transform:
   - {fileID: 1281424608551457374}
   - {fileID: 8984455898725292146}
   - {fileID: 1377015225293456466}
+  - {fileID: 520479861279700051}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1039,15 +1070,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _littlePoopPrefab: {fileID: 7197439034717660888, guid: cb3a445be8b553644aaa7e5995e38a13,
     type: 3}
+  _littlePoopSize: 1
   _bigPoopPrefab: {fileID: 8279328257142895532, guid: c678e95c76bff334aba4a8344047e406,
     type: 3}
+  _bigPoopSize: 2
   _maxPoopCapacity: 6
   _poopAvailable: 3
   _maxHealth: 6
   _health: 4
   _autoHealthRecoverySpeed: 0.01
   _touchDamage: 0.5
-  _preparedPoop: {fileID: 8700316301227394264}
+  _preparedPoopGameObject: {fileID: 8700316301227394264}
+  _poopHoleLocation: {fileID: 520479861279700051}
 --- !u!1 &3115860894582774335
 GameObject:
   m_ObjectHideFlags: 0

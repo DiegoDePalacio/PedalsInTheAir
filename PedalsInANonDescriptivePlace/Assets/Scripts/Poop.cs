@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace PedalsInANonDescriptivePlace
@@ -6,6 +7,11 @@ namespace PedalsInANonDescriptivePlace
     public class Poop : MonoBehaviour
     {
         [SerializeField] private float _damage;
+
+        private void Awake()
+        {
+            Debug.Log("Poop " + _damage);
+        }
 
         private void OnCollisionEnter(Collision other)
         {

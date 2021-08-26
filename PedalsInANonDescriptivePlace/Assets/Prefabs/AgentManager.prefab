@@ -469,6 +469,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3903810048349749182}
+  - component: {fileID: 281594765821904870}
   m_Layer: 0
   m_Name: AgentManager
   m_TagString: Untagged
@@ -496,6 +497,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &281594765821904870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3903810048349749181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70617ef7579e22146b1b9e4cd30d5d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waypointHolders:
+  - {fileID: 3903810047575983330}
+  - {fileID: 3903810049297705588}
+  - {fileID: 3903810047292468732}
+  - {fileID: 3903810048949506878}
+  - {fileID: 3903810049353614070}
+  - {fileID: 3903810047459663524}
+  _isRandom: 000100000101
+  _characters:
+  - {fileID: 4053874945559417249, guid: 263316a38ace0c24195686397ac8baee, type: 3}
+  - {fileID: 865076859307091761, guid: 34cca7aa0b690a0439e58c851a24700b, type: 3}
+  - {fileID: 7058884191107177569, guid: 8e9e6336438d3eb4da472be64af92729, type: 3}
+  - {fileID: 4765133989276078231, guid: 235292fbc02f19c40964ffe3c2688cc0, type: 3}
+  - {fileID: 3622933934859583427, guid: 01768ccce650de34694f03deab735fb3, type: 3}
+  - {fileID: 1537173247931796651, guid: b8246c8632d68d841ac6ad6d4a77aeb5, type: 3}
 --- !u!1 &3903810048373425690
 GameObject:
   m_ObjectHideFlags: 0

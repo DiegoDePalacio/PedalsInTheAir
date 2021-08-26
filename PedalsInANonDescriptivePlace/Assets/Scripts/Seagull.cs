@@ -43,16 +43,19 @@ namespace PedalsInANonDescriptivePlace
         {
             IncreaseHealth(_autoHealthRecoverySpeed);
 
-            if (Input.GetButtonDown(LITTLE_POOP) || Input.GetButtonDown(BIG_POOP))
+            if (PlayerController.ShootDown1 || PlayerController.ShootDown2)
+//            if (Input.GetButtonDown(LITTLE_POOP) || Input.GetButtonDown(BIG_POOP))
             {
                 PreparePoop();
             }
 
-            if (Input.GetButtonUp(LITTLE_POOP))
+            if (PlayerController.ShootUp1)
+//            if (Input.GetButtonUp(LITTLE_POOP))
             {
                 SpawnPoop(false);
             }
-            else if (Input.GetButtonUp(BIG_POOP))
+            else if (PlayerController.ShootUp2)          
+//            else if (Input.GetButtonUp(BIG_POOP))
             {
                 SpawnPoop(true);
             }

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace PedalsInANonDescriptivePlace
 {
@@ -18,6 +19,8 @@ namespace PedalsInANonDescriptivePlace
         [SerializeField] private float _crashDamage = 2f;
         [SerializeField] private GameObject _preparedPoopGameObject;
         [SerializeField] private Transform _poopHoleLocation;
+        [SerializeField] private Image _healthFill;
+        [SerializeField] private Image[] _poopMeter;
 
         private bool _isPoopPrepared = false;
 
@@ -127,7 +130,10 @@ namespace PedalsInANonDescriptivePlace
 
         private void UpdateUI()
         {
-//            throw new NotImplementedException();
+            _healthFill.fillAmount = _health / _maxHealth;
+
+            for (int i = 0; i < _maxPoopCapacity; i++)
+                _poopMeter[i].enabled = (i <= _poopAvailable);
         }
 
         private void Die()

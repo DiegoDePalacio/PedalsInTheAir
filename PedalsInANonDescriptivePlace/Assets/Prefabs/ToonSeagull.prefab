@@ -995,7 +995,7 @@ MonoBehaviour:
   _animationSpeed: 2
   _defaultHorizontalVelocity: 3
   _maxHorizontalVelocity: 10
-  _maxFramesPerAverage: 30
+  _maxFramesPerAverage: 10
   VerticalForceSlider: {fileID: 0}
   HorizontalMaxVelocitySlider: {fileID: 0}
   MaxAverageFramesSlider: {fileID: 0}
@@ -1047,11 +1047,13 @@ MonoBehaviour:
   _maxPoopCapacity: 6
   _poopAvailable: 3
   _maxHealth: 6
-  _health: 4
+  _health: 6
   _autoHealthRecoverySpeed: 0.01
   _touchDamage: 0.5
+  _crashDamage: 2
   _preparedPoopGameObject: {fileID: 8700316301227394264}
   _poopHoleLocation: {fileID: 6669525173886902055}
+  _healthFill: {fileID: 0}
 --- !u!1 &3115860894582774335
 GameObject:
   m_ObjectHideFlags: 0

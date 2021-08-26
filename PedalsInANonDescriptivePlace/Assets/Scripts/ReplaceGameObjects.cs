@@ -58,12 +58,10 @@ namespace CommonsEditor
 
 			if (replacingObject != null)
 			{
-
 				List<GameObject> replacedObjects = new List<GameObject>();
 
 				foreach (Transform t in Selection.transforms)
 				{
-
 					GameObject o;
 
 					// check if object is an actual prefab instance root in the Scene (from model, regular or variant prefab)
@@ -148,7 +146,6 @@ namespace CommonsEditor
 				{
 					Undo.DestroyObjectImmediate(oldTransforms[i].gameObject);
 				}
-
 			}
 		}
 

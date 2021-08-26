@@ -5,9 +5,6 @@ namespace PedalsInANonDescriptivePlace
 {
     public class Seagull : MonoBehaviour
     {
-        private const string LITTLE_POOP = "Fire1";
-        private const string BIG_POOP = "showStats";
-    
         [SerializeField] private Poop _littlePoopPrefab;
         [SerializeField] private int _littlePoopSize = 1;
         [SerializeField] private Poop _bigPoopPrefab;
@@ -17,7 +14,8 @@ namespace PedalsInANonDescriptivePlace
         [SerializeField] private float _maxHealth;
         [SerializeField] private float _health;
         [SerializeField] private float _autoHealthRecoverySpeed = 0.01f;
-        [SerializeField] private float _touchDamage;
+        [SerializeField] private float _touchDamage = 0.5f;
+        [SerializeField] private float _crashDamage = 2f;
         [SerializeField] private GameObject _preparedPoopGameObject;
         [SerializeField] private Transform _poopHoleLocation;
 
@@ -113,6 +111,11 @@ namespace PedalsInANonDescriptivePlace
         private void OnTriggerEnter(Collider other)
         {
             DecreaseHealth(_touchDamage);
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            DecreaseHealth(_crashDamage);
         }
 
         private void PreparePoop()

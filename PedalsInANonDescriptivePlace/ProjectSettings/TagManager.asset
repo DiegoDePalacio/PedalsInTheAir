@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Seagull
   - Person
+  - PickUp
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,8 @@ namespace PedalsInANonDescriptivePlace
 {
     public class Seagull : MonoBehaviour
     {
+        private const string PICKUP_TAG = "PickUp";
+    
         [SerializeField] private Poop _littlePoopPrefab;
         [SerializeField] private int _littlePoopSize = 1;
         [SerializeField] private Poop _bigPoopPrefab;
@@ -122,11 +124,17 @@ namespace PedalsInANonDescriptivePlace
 
         private void OnTriggerEnter(Collider other)
         {
+            if (other.gameObject.CompareTag(PICKUP_TAG))
+                return;
+        
             DecreaseHealth(_touchDamage);
         }
 
         private void OnCollisionEnter(Collision other)
         {
+            if (other.gameObject.CompareTag(PICKUP_TAG))
+                return;
+        
             SoundManager.Instance.PlaySound(SFX.Crash);
             DecreaseHealth(_crashDamage);
         }

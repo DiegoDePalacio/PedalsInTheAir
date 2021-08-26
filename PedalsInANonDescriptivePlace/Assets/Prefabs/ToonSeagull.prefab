@@ -995,7 +995,7 @@ MonoBehaviour:
   _animationSpeed: 2
   _defaultHorizontalVelocity: 3
   _maxHorizontalVelocity: 10
-  _maxFramesPerAverage: 30
+  _maxFramesPerAverage: 15
   VerticalForceSlider: {fileID: 0}
   HorizontalMaxVelocitySlider: {fileID: 0}
   MaxAverageFramesSlider: {fileID: 0}
@@ -1061,6 +1061,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _burgersEatenText: {fileID: 0}
 --- !u!1 &3115860894582774335
 GameObject:
   m_ObjectHideFlags: 0

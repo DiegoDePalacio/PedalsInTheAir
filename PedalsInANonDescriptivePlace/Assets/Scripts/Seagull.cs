@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,12 +27,15 @@ namespace PedalsInANonDescriptivePlace
         [SerializeField] private Image[] _poopMeter;
         [SerializeField] private Text _burgersEatenText;
 
+        private bool _canTakeDamage = false;
         private bool _isPoopPrepared = false;
         private int _burgersEaten;
 
         private void Awake()
         {
             _preparedPoopGameObject.SetActive(false);
+            _canTakeDamage = false;
+            Invoke("SufferMyFriend", 3f);
         }
 
         public bool RefillPoop(int amountToRefill)
@@ -49,6 +53,9 @@ namespace PedalsInANonDescriptivePlace
 
         public void DecreaseHealth(float damage)
         {
+            if (!_canTakeDamage)
+                return;
+
             _health -= damage;
 
             if (_health <= 0f)
@@ -57,6 +64,9 @@ namespace PedalsInANonDescriptivePlace
             }
 
             UpdateUI();
+
+            _canTakeDamage = false;
+            Invoke("SufferMyFriend", 1.5f);
         }
 
         public void IncreaseHealth(float _amountToIncrease)
@@ -161,5 +171,11 @@ namespace PedalsInANonDescriptivePlace
         {
             GameOverManager.Instance.GameOver();
         }
+
+        private void SufferMyFriend()
+        {
+            _canTakeDamage = true;
+            Debug.Log("Suffer!!!");
+        }    
     }
 }

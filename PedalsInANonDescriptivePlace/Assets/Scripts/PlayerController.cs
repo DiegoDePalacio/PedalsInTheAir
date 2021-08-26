@@ -168,11 +168,11 @@ namespace PedalsInANonDescriptivePlace
 #endif
 
             if (SteerLeft)
-                steering -= 1f;
-            if (SteerRight)
                 steering += 1f;
+            if (SteerRight)
+                steering -= 1f;
             
-            transform.Rotate(_steeringSpeed * steering);
+            transform.Rotate(-_steeringSpeed * steering);
         }
         
         private void UpdateForwardVelocity()

@@ -45,8 +45,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6286530718968031387, guid: 47037ea22cbf9e54897c2ea7358f844e,
         type: 3}
+      propertyPath: _sfx.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6286530718968031387, guid: 47037ea22cbf9e54897c2ea7358f844e,
+        type: 3}
       propertyPath: _name
       value: Long Man
+      objectReference: {fileID: 0}
+    - target: {fileID: 6286530718968031387, guid: 47037ea22cbf9e54897c2ea7358f844e,
+        type: 3}
+      propertyPath: _sfx.Array.data[0]
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6286530718968031387, guid: 47037ea22cbf9e54897c2ea7358f844e,
+        type: 3}
+      propertyPath: _sfx.Array.data[1]
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6286530718968031387, guid: 47037ea22cbf9e54897c2ea7358f844e,
+        type: 3}
+      propertyPath: _sfx.Array.data[2]
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 6713593786982308583, guid: 47037ea22cbf9e54897c2ea7358f844e,
         type: 3}

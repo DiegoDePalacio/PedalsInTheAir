@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
-
+using Random = UnityEngine.Random;
 namespace PedalsInANonDescriptivePlace
 {
     [RequireComponent(typeof(Collider))]
@@ -14,7 +15,10 @@ namespace PedalsInANonDescriptivePlace
         [SerializeField] private String _name;
         [SerializeField] private Text _nameText;
         [SerializeField] private Image _healthFill;
-
+        [SerializeField] private List<SFX> _sfx = new List<SFX>();
+        
+        public AgentManager _manager;
+        
         private List<Transform> _waypoints = new List<Transform>();
         private float _maxHealth;
         private bool _isRandom;
@@ -60,6 +64,9 @@ namespace PedalsInANonDescriptivePlace
         public void OnBeingPooped(float damage)
         {
             _health -= damage;
+            
+            int rndClip = Random.Range(0, _sfx.Count);
+            SoundManager.Instance.PlaySound(_sfx[rndClip]);
 
             if (_health <= 0f)
             {
@@ -71,7 +78,7 @@ namespace PedalsInANonDescriptivePlace
 
         private void Die()
         {
-            
+            _manager.ReduceNumberOfPeople();
             Destroy(gameObject);
         }
 

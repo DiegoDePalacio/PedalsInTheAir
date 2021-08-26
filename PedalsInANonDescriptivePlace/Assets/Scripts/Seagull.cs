@@ -151,7 +151,7 @@ namespace PedalsInANonDescriptivePlace
 
         private void Die()
         {
-            throw new NotImplementedException();
+            GameOverManager.Instance.GameOver();
         }
     }
 }

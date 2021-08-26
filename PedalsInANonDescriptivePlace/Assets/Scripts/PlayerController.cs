@@ -10,8 +10,6 @@ namespace PedalsInANonDescriptivePlace
     {
         private const string PEDAL_AXIS = "PedalInput";
         private const string HORIZONTAL_STEER = "Horizontalzzz";
-        private const string BRAKE = "Fire2";
-        private const string ACCELERATE = "Fire3";
 
         public static KeyCode steerLeftKeyboard = KeyCode.A;
         public static KeyCode steerRightKeyboard = KeyCode.D;
@@ -48,10 +46,18 @@ namespace PedalsInANonDescriptivePlace
         private bool isSoaring;
         private List<float> _lastInputs = new List<float>();
         private int _currentFrame;
-
+        
+        // TODO: Move all these to an Input Manager
         private static bool SteerRight => Input.GetKey(steerRightKeyboard) || Input.GetKey(joy3);
         private static bool SteerLeft => Input.GetKey(steerLeftKeyboard) || Input.GetKey(joy2);
-        
+        private static bool Accelerate => Input.GetKey(ability1Keyboard) || Input.GetKey(joy1);
+        private static bool Breake => Input.GetKey(ability2Keyboard) || Input.GetKey(joy0);
+
+        public static bool ShootDown1 => Input.GetKeyDown(ability3Keyboard) || Input.GetKeyDown(joy4);
+        public static bool ShootUp1 => Input.GetKeyUp(ability3Keyboard) || Input.GetKeyUp(joy4);
+        public static bool ShootDown2 => Input.GetKeyDown(ability4Keyboard) || Input.GetKeyDown(joy5);
+        public static bool ShootUp2 => Input.GetKeyUp(ability4Keyboard) || Input.GetKeyUp(joy5);
+
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
@@ -63,6 +69,14 @@ namespace PedalsInANonDescriptivePlace
 
         private void FixedUpdate()
         {   
+            RefreshSettingsChanges();
+            UpdatePedalForce();
+            UpdateSteering();
+            UpdateForwardVelocity();
+        }
+
+        private void RefreshSettingsChanges()
+        {
             if (VerticalForceSlider != null)
             {
                 Vector3 sliderVector = new Vector3(0, VerticalForceSlider.value, 0);
@@ -97,10 +111,6 @@ namespace PedalsInANonDescriptivePlace
                 }
                 MaxAverageFramesSlider.transform.GetChild(0).GetComponent<Text>().text = MaxAverageFramesSlider.value.ToString();
             }
-
-            UpdatePedalForce();
-            UpdateSteering();
-            UpdateForwardVelocity();
         }
 
         private void UpdatePedalForce()
@@ -168,9 +178,10 @@ namespace PedalsInANonDescriptivePlace
         {
             float verticalVelocity = _rigidbody.velocity.y;
             float targetSpeed;
-            if (Input.GetButton(ACCELERATE))
+            
+            if (Accelerate)
                 targetSpeed = _maxHorizontalVelocity;
-            else if (Input.GetButton(BRAKE))
+            else if (Breake)
                 targetSpeed = 0f;
             else
                 targetSpeed = _defaultHorizontalVelocity;

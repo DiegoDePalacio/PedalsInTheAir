@@ -987,14 +987,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d013cd2fad8c634bae19a6a01651863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pedalForce: {x: 0, y: 20, z: 0}
+  _pedalForce: {x: 0, y: 13, z: 0}
   _steeringSpeed: {x: 0, y: 2, z: 0}
   _maxPedalVelocity: 4
   _animation: {fileID: 3115860894582784052}
   _animationSpeed: 2
   _defaultHorizontalVelocity: 3
   _maxHorizontalVelocity: 10
-  _maxFramesPerAverage: 0
+  _maxFramesPerAverage: 30
   VerticalForceSlider: {fileID: 0}
   HorizontalMaxVelocitySlider: {fileID: 0}
   MaxAverageFramesSlider: {fileID: 0}
@@ -1041,7 +1041,8 @@ MonoBehaviour:
     type: 3}
   _bigPoopPrefab: {fileID: 8279328257142895532, guid: c678e95c76bff334aba4a8344047e406,
     type: 3}
-  _poopAvailable: 0
+  _maxPoopCapacity: 6
+  _poopAvailable: 3
   _maxHealth: 6
   _health: 4
   _autoHealthRecoverySpeed: 0.01

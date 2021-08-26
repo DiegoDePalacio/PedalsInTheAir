@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine.UI;
 
 namespace PedalsInANonDescriptivePlace
 {
@@ -19,20 +22,63 @@ namespace PedalsInANonDescriptivePlace
         [SerializeField] private float _animationSpeed = 1;
         [SerializeField] private float _defaultHorizontalVelocity;
         [SerializeField] private float _maxHorizontalVelocity;
+        [SerializeField] private int _maxFramesPerAverage;
+        [SerializeField] private Slider VerticalForceSlider;
+        [SerializeField] private Slider HorizontalMaxVelocitySlider;
+        [SerializeField] private Slider MaxAverageFramesSlider;
 
         private float _velocityHorizontalSpeed;
         private Rigidbody _rigidbody;
         private bool isSoaring;
+        private List<float> _lastInputs = new List<float>();
+        private int _currentFrame;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
             _velocityHorizontalSpeed = _defaultHorizontalVelocity;
             _rigidbody.velocity = transform.forward * _defaultHorizontalVelocity;
+            for (int i = 0; i < _maxFramesPerAverage; i++)
+                _lastInputs.Add(0);
         }
 
         private void FixedUpdate()
-        {
+        {   
+            if (VerticalForceSlider != null)
+            {
+                Vector3 sliderVector = new Vector3(0, VerticalForceSlider.value, 0);
+                _pedalForce = sliderVector;
+
+                VerticalForceSlider.transform.GetChild(0).GetComponent<Text>().text = VerticalForceSlider.value.ToString("0.00");
+            }
+
+            if (HorizontalMaxVelocitySlider != null)
+            {
+                _maxHorizontalVelocity = HorizontalMaxVelocitySlider.value;
+
+                HorizontalMaxVelocitySlider.transform.GetChild(0).GetComponent<Text>().text = HorizontalMaxVelocitySlider.value.ToString("0.00");
+            }
+
+            if (MaxAverageFramesSlider != null)
+            {
+                _maxFramesPerAverage = ((int)MaxAverageFramesSlider.value);
+
+                if (_lastInputs.Count < _maxFramesPerAverage)
+                {
+                    for (int i = 0; i < _maxFramesPerAverage - _lastInputs.Count; i++)
+                        _lastInputs.Add(_lastInputs.Last());
+
+                    _currentFrame = (_currentFrame + 1) % _maxFramesPerAverage;
+                }
+
+                else if (_lastInputs.Count > _maxFramesPerAverage)
+                {
+                    _lastInputs.RemoveRange(0, _lastInputs.Count - _maxFramesPerAverage);
+                    _currentFrame = (_currentFrame + 1) % _maxFramesPerAverage;
+                }
+                MaxAverageFramesSlider.transform.GetChild(0).GetComponent<Text>().text = MaxAverageFramesSlider.value.ToString();
+            }
+
             UpdatePedalForce();
             UpdateSteering();
             UpdateForwardVelocity();
@@ -41,6 +87,12 @@ namespace PedalsInANonDescriptivePlace
         private void UpdatePedalForce()
         {
             float pedalPower = Input.GetAxis(PEDAL_AXIS);
+
+            int averageDivider = Mathf.Min(_currentFrame, _maxFramesPerAverage);
+            _lastInputs = _lastInputs.Select(e => {return e + pedalPower;}).ToList();
+            float averagePedalPower = _lastInputs[_currentFrame] / averageDivider;
+            _currentFrame = (_currentFrame + 1) % _maxFramesPerAverage;
+
             // After reaching certain velocity, adding more force towards the same direction is not possible 
             if (Mathf.Sign(_rigidbody.velocity.y) == Mathf.Sign(pedalPower)
                 && Mathf.Abs(_rigidbody.velocity.y) > _maxPedalVelocity)

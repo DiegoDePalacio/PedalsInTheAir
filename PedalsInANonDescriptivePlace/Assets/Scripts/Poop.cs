@@ -15,7 +15,8 @@ namespace PedalsInANonDescriptivePlace
                 person.OnBeingPooped(_damage);
             }
             
-            Destroy(gameObject);
+            if (!other.gameObject.CompareTag("Seagull"))
+                Destroy(gameObject);
         }
     }
 }

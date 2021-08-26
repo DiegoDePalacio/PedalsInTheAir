@@ -93,7 +93,7 @@ namespace PedalsInANonDescriptivePlace
 
         private void UpdateUI()
         {
-            throw new NotImplementedException();
+//            throw new NotImplementedException();
         }
 
         private void Die()

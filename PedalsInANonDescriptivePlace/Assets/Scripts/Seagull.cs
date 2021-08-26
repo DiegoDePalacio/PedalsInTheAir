@@ -10,15 +10,26 @@ namespace PedalsInANonDescriptivePlace
     
         [SerializeField] private Poop _littlePoopPrefab;
         [SerializeField] private Poop _bigPoopPrefab;
-        [SerializeField] private float _poopAvailable;
+        [SerializeField] private int _maxPoopCapacity;
+        [SerializeField] private int _poopAvailable;
         [SerializeField] private float _maxHealth;
         [SerializeField] private float _health;
         [SerializeField] private float _autoHealthRecoverySpeed = 0.01f;
         [SerializeField] private float _touchDamage;
+        [SerializeField] private GameObject _preparedPoop;
 
-        public void RefillPoop(float amountToRefill)
+        private void Awake()
         {
-            _poopAvailable += amountToRefill;
+            _preparedPoop.SetActive(false);
+        }
+
+        public bool RefillPoop(int amountToRefill)
+        {
+            if (_poopAvailable == _maxPoopCapacity)
+                return false;
+            
+            _poopAvailable = Mathf.Min(_maxPoopCapacity, _poopAvailable + amountToRefill);
+            return true;
         }
 
         public void DecreaseHealth(float damage)
@@ -63,6 +74,8 @@ namespace PedalsInANonDescriptivePlace
 
         private void SpawnPoop(bool isBigPoop)
         {
+            _preparedPoop.SetActive(false);
+        
             // TODO: Replace by pool usage
             Instantiate(isBigPoop ? _bigPoopPrefab : _littlePoopPrefab);
         }
@@ -75,7 +88,7 @@ namespace PedalsInANonDescriptivePlace
         private void PreparePoop()
         {
             // Show some small brown sphere peeking out of the seagull's ass
-            throw new NotImplementedException();
+            _preparedPoop.SetActive(true);
         }
 
         private void UpdateUI()
